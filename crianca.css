@@ -1,0 +1,15 @@
+/* Estilo infantil (crianças) */
+.infantil {
+  background: linear-gradient(to right, #ffeaa7, #fab1a0);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 195, 113, 0.4);
+}
+
+.infantil h2 {
+  font-size: 2rem;
+  color: #d35400;
+}
+
+.infantil ul li::before {
+  content: '🌟 ';
+}

@@ -1,0 +1,43 @@
+/* Formulário */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.formulario label {
+  font-weight: 600;
+}
+
+.formulario input,
+.formulario select {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.formulario button {
+  padding: 0.8rem;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.formulario button:hover {
+  background-color: #4e09a4;
+}
+
+/* Resultado do conselho */
+#conselho {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  background-color: #eafaf1;
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 5px solid #2ecc71;
+}

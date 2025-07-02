@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styleformulario.css">
+</head>
+<body>
+    <section id="formulario">
+    <h2>📋 Como você está se sentindo?</h2>
+    <form class="formulario" id="sentimentoForm">
+      <label for="idade">Sua idade:</label>
+      <input type="number" id="idade" required />
+
+      <label for="emocao">Como você está se sentindo agora?</label>
+      <select id="emocao" required>
+        <option value="">Selecione...</option>
+        <option value="feliz">Feliz</option>
+        <option value="triste">Triste</option>
+        <option value="ansioso">Ansioso</option>
+        <option value="com raiva">Com raiva</option>
+      </select>
+
+       <script>
+    document.getElementById("sentimentoForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const idade = parseInt(document.getElementById("idade").value);
+      const emocao = document.getElementById("emocao").value;
+      let mensagem = "";
+
+      if (emocao === "feliz") {
+        mensagem = "Que ótimo! Continue espalhando essa alegria ao seu redor! 😊";
+      } else if (emocao === "triste") {
+        mensagem = idade <= 12 ?
+          "Está tudo bem ficar triste às vezes. Que tal desenhar ou ouvir uma música que você gosta?" :
+          "Momentos difíceis passam. Fale com alguém de confiança e cuide bem de você.";
+      } else if (emocao === "ansioso") {
+        mensagem = idade <= 12 ?
+          "Respire fundo e conte até 10. Pode ajudar desenhar ou brincar." :
+          "Experimente técnicas de respiração ou fale com alguém. Você não está sozinho.";
+      } else if (emocao === "com raiva") {
+        mensagem = idade <= 12 ?
+          "Bata um travesseiro ou corra um pouco. Depois, tente conversar sobre o que aconteceu." :
+          "Raiva é normal. Transforme ela em algo bom: escreva, caminhe ou escute música.";
+      }
+      document.getElementById("conselho").innerText = mensagem;
+    });
+  </script>
+
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="conselho"></div>
+  </section>
+    
+</body>
+</html>

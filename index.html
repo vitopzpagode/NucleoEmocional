@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Núcleo Emocional</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -17,16 +17,143 @@
     <a href="./crianca.html"><p>Crianças</p></a>
     <a href="./adolescente.html"><p>Adolescentes</p></a>
     <a href="./formulario.html"><p>Como você está se sentindo?</p></a>
-    <a href="./eaia.html"><p>IA</p></a>
   </nav>
 
-  <!-- Imagem expandida -->
-  <div style="text-align: center; margin-top: 40px;">
-    <img 
-      src="f6ca4b5a-531a-48ac-a07d-2cc9519560c9.jpg" 
-      alt="Logo Núcleo Emocional" 
-      style="width: 80%; max-width: 800px; height: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-radius: 20px;" 
-    />
+  <!-- Personagens do Divertidamente -->
+  <section class="personagens">
+    <h2>Conheça as Emoções</h2>
+    <div class="personagens-container">
+      <img src="alegria-removebg-preview.png" alt="Alegria" onclick="abrirModal('alegria')" />
+      <img src="tristeza-removebg-preview.png" alt="Tristeza" onclick="abrirModal('tristeza')" />
+      <img src="raiva-removebg-preview.png" alt="Raiva" onclick="abrirModal('raiva')" />
+      <img src="nojo-removebg-preview.png" alt="Nojo" onclick="abrirModal('nojo')" />
+      <img src="medo-removebg-preview.png" alt="Medo" onclick="abrirModal('medo')" />
+    </div>
+  </section>
+
+  <!-- Modal das Emoções -->
+  <div id="modalEmocao" class="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <h3 id="tituloEmocao"></h3>
+      <p id="descricaoEmocao"></p>
+    </div>
   </div>
+
+  <!-- Jogo das Emoções -->
+  <section class="jogo-emocoes">
+    <h2>Jogo das Emoções</h2>
+    <p>Arraste a emoção até a descrição correta!</p>
+
+    <div class="jogo-container">
+      <div class="emoções" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="emo" draggable="true" ondragstart="drag(event)" id="alegria">Alegria</div>
+        <div class="emo" draggable="true" ondragstart="drag(event)" id="tristeza">Tristeza</div>
+        <div class="emo" draggable="true" ondragstart="drag(event)" id="raiva">Raiva</div>
+      </div>
+
+      <div class="descricoes">
+        <div class="caixa" ondrop="drop(event)" ondragover="allowDrop(event)" data-resposta="raiva">
+          <p>Quando algo te irrita ou te faz perder a paciência</p>
+        </div>
+        <div class="caixa" ondrop="drop(event)" ondragover="allowDrop(event)" data-resposta="alegria">
+          <p>Quando você está feliz e com vontade de sorrir</p>
+        </div>
+        <div class="caixa" ondrop="drop(event)" ondragover="allowDrop(event)" data-resposta="tristeza">
+          <p>Quando você sente vontade de chorar ou fica desanimado</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="verificarRespostas()">Verificar Respostas</button>
+    <p id="resultado"></p>
+  </section>
+
+  <script>
+    // Modal funções
+    const descricoesEmocoes = {
+      alegria: {
+        titulo: "Alegria",
+        descricao: "Alegria é a emoção que nos faz sorrir, sentir-se feliz e cheio de energia positiva."
+      },
+      tristeza: {
+        titulo: "Tristeza",
+        descricao: "Tristeza é uma emoção que nos faz sentir melancolia, desânimo ou vontade de chorar."
+      },
+      raiva: {
+        titulo: "Raiva",
+        descricao: "Raiva é a emoção que aparece quando algo nos irrita ou frustra, e nos deixa com vontade de reagir."
+      },
+      nojo: {
+        titulo: "Nojo",
+        descricao: "Nojo é a emoção que sentimos quando algo nos causa repulsa ou aversão."
+      },
+      medo: {
+        titulo: "Medo",
+        descricao: "Medo é a emoção que nos alerta para perigos ou situações que nos deixam inseguros."
+      }
+    };
+
+    function abrirModal(emocao) {
+      const modal = document.getElementById("modalEmocao");
+      const titulo = document.getElementById("tituloEmocao");
+      const descricao = document.getElementById("descricaoEmocao");
+
+      titulo.textContent = descricoesEmocoes[emocao].titulo;
+      descricao.textContent = descricoesEmocoes[emocao].descricao;
+
+      modal.style.display = "block";
+    }
+
+    function fecharModal() {
+      const modal = document.getElementById("modalEmocao");
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("modalEmocao");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Jogo funções
+    function allowDrop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add("over");
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove("over");
+      const data = ev.dataTransfer.getData("text");
+      const dragged = document.getElementById(data);
+      ev.currentTarget.innerHTML = "";
+      ev.currentTarget.appendChild(dragged);
+    }
+
+    function verificarRespostas() {
+      let corretas = 0;
+      const caixas = document.querySelectorAll(".caixa");
+      caixas.forEach(caixa => {
+        const resposta = caixa.dataset.resposta;
+        const item = caixa.querySelector(".emo");
+        if (item && item.id === resposta) {
+          corretas++;
+        }
+      });
+
+      const resultado = document.getElementById("resultado");
+      if (corretas === 3) {
+        resultado.textContent = "Parabéns! Você acertou todas as emoções!";
+      } else {
+        resultado.textContent = `Você acertou ${corretas} de 3. Tente novamente!`;
+      }
+    }
+  </script>
 </body>
 </html>

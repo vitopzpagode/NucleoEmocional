@@ -1,26 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./crianca.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu Crianças - Núcleo Emocional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crianca.css" />
 </head>
 <body>
-   <section id="criancas" class="infantil">
-    <h2>👧 Crianças (6 a 12 anos)</h2>
-    <p>A infância é uma fase fundamental para o desenvolvimento emocional, social e cognitivo. Crianças nessa idade estão formando suas bases afetivas e precisam de um ambiente acolhedor para crescerem seguras. Através de brincadeiras, conversas e rotinas saudáveis, elas aprendem a nomear e lidar com suas emoções.</p>
-    <ul>
-      <li><strong>Conceitos:</strong> Nesta fase, é importante desenvolver a inteligência emocional, promovendo empatia, respeito ao próximo, cooperação e autorregulação. Brincadeiras guiadas e leitura de histórias são ferramentas eficazes para isso.</li>
-      <li><strong>Fatos:</strong> O cérebro das crianças está em rápida formação, especialmente nas áreas de linguagem, memória e controle emocional. Ambientes afetivos e seguros contribuem significativamente para o seu equilíbrio emocional.</li>
-      <li><strong>Curiosidades:</strong> Estudos mostram que crianças que têm o hábito de desenhar ou ouvir histórias tendem a desenvolver mais empatia e controle emocional. A arte, o jogo e a expressão corporal são linguagens importantes nesse processo.</li>
-      <li><strong>Como lidar:</strong> Estabeleça rotinas com previsibilidade, valide os sentimentos da criança ("Eu entendo que você ficou bravo..."), mantenha o diálogo constante e utilize histórias ou jogos simbólicos para abordar emoções.</li>
-    </ul>
-    <div class="imagem-exemplo">
-      <img src="img/criancas-aprendendo.jpg" alt="Crianças brincando e aprendendo">
-      <p>Momentos de convivência e aprendizagem fortalecem os vínculos e as emoções positivas.</p>
+  <header>
+    <h1>Para Crianças (6 a 12 anos)</h1>
+    <p>Vamos entender e brincar com as emoções!</p>
+  </header>
+
+  <nav>
+    <button class="menu-btn" onclick="mostrarSecao('alegria')">Alegria 😊</button>
+    <button class="menu-btn" onclick="mostrarSecao('tristeza')">Tristeza 😢</button>
+    <button class="menu-btn" onclick="mostrarSecao('raiva')">Raiva 😡</button>
+    <button class="menu-btn" onclick="mostrarSecao('nojo')">Nojo 🤢</button>
+    <button class="menu-btn" onclick="mostrarSecao('medo')">Medo 😨</button>
+    <button class="menu-btn" onclick="mostrarSecao('quiz')">Quiz Divertido 🎲</button>
+  </nav>
+
+  <section id="conteudo">
+    <div id="alegria" class="secao-emocao secao-ativa">
+      <h2>Alegria</h2>
+      <p>Alegria é quando você está muito feliz, sorrindo e querendo brincar!</p>
+      <button onclick="alert('Tente sorrir agora mesmo! A alegria é contagiante 😄')">Dica divertida</button>
+    </div>
+
+    <div id="tristeza" class="secao-emocao">
+      <h2>Tristeza</h2>
+      <p>Tristeza é quando você se sente meio pra baixo, com vontade de chorar. Isso acontece e tudo bem!</p>
+      <button onclick="alert('Fale com alguém que você gosta quando estiver triste, isso ajuda muito! ❤️')">Dica divertida</button>
+    </div>
+
+    <div id="raiva" class="secao-emocao">
+      <h2>Raiva</h2>
+      <p>Raiva é quando algo te irrita e você quer gritar ou bater. Respire fundo para acalmar!</p>
+      <button onclick="alert('Faça 3 respirações profundas para acalmar a raiva! 🌬️')">Dica divertida</button>
+    </div>
+
+    <div id="nojo" class="secao-emocao">
+      <h2>Nojo</h2>
+      <p>Nojo é quando algo te incomoda, como um cheiro ruim ou algo sujo.</p>
+      <button onclick="alert('Evite o que causa nojo e lave as mãos sempre! 🧼')">Dica divertida</button>
+    </div>
+
+    <div id="medo" class="secao-emocao">
+      <h2>Medo</h2>
+      <p>Medo é quando você sente que algo pode dar errado, ou quando escuta um barulho estranho.</p>
+      <button onclick="alert('Lembre-se: você é forte e protegido! Converse com alguém se estiver com medo. 💪')">Dica divertida</button>
+    </div>
+
+    <div id="quiz" class="secao-emocao">
+      <h2>Quiz Divertido</h2>
+      <p>Responda rápido: Qual emoção você sente quando está sorrindo muito?</p>
+      <button onclick="responderQuiz('alegria')">Alegria</button>
+      <button onclick="responderQuiz('raiva')">Raiva</button>
+      <button onclick="responderQuiz('tristeza')">Tristeza</button>
+      <p id="resposta-quiz" style="margin-top: 15px; font-weight: bold;"></p>
     </div>
   </section>
-    
+
+  <script>
+    function mostrarSecao(secao) {
+      const secoes = document.querySelectorAll('.secao-emocao');
+      secoes.forEach(s => s.classList.remove('secao-ativa'));
+      document.getElementById(secao).classList.add('secao-ativa');
+      if (secao === 'quiz') {
+        document.getElementById('resposta-quiz').textContent = '';
+      }
+    }
+
+    function responderQuiz(resposta) {
+      const respostaCorreta = 'alegria';
+      const elementoResposta = document.getElementById('resposta-quiz');
+      if (resposta === respostaCorreta) {
+        elementoResposta.textContent = 'Muito bem! Você acertou! 🎉';
+        elementoResposta.style.color = 'green';
+      } else {
+        elementoResposta.textContent = 'Quase lá! Tente novamente! 🤔';
+        elementoResposta.style.color = 'red';
+      }
+    }
+  </script>
 </body>
 </html>

@@ -1,15 +1,113 @@
-/* Estilo infantil (crianças) */
-.infantil {
-  background: linear-gradient(to right, #ffeaa7, #fab1a0);
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e4f0fc, #fdf6f9);
+  color: #3b3a56;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #8e44ad;
+}
+
+/* Menu */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.menu-btn {
+  background: linear-gradient(135deg, #c1d3fe, #a79eff);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(107, 83, 173, 0.6);
+  transition: background 0.4s, transform 0.3s;
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, #a79eff, #7d62d7);
+  transform: scale(1.05);
+}
+
+/* Conteúdo das seções */
+#conteudo {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.secao-emocao {
+  display: none;
+  background: #f8f3fc;
+  padding: 25px 30px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 195, 113, 0.4);
+  box-shadow: 0 4px 18px rgba(131, 93, 174, 0.3);
+  color: #4a148c;
+  text-align: center;
 }
 
-.infantil h2 {
+.secao-ativa {
+  display: block;
+}
+
+.secao-emocao h2 {
+  margin-bottom: 15px;
   font-size: 2rem;
-  color: #d35400;
+  color: #6a1b9a;
 }
 
-.infantil ul li::before {
-  content: '🌟 ';
+.secao-emocao p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.secao-emocao button {
+  background: linear-gradient(135deg, #9575cd, #6a1b9a);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(107, 83, 173, 0.6);
+  transition: background 0.3s;
+}
+
+.secao-emocao button:hover {
+  background: linear-gradient(135deg, #6a1b9a, #9575cd);
+}
+
+/* Quiz resposta */
+#resposta-quiz {
+  font-size: 1.3rem;
+  margin-top: 15px;
+  font-weight: 700;
 }
